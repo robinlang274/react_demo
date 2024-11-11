@@ -1,0 +1,103 @@
+// import React, { FC, useState, useEffect } from "react";
+// import produce from "immer";
+// import QuesionCard from "./components/QuestionCard";
+// import styles from "./List2.module.css";
+
+// const List2: FC = () => {
+//   useEffect(() => {
+//     console.log("print test");
+//   }, []);
+
+//   const [questionList, setQuestionList] = useState([
+//     { id: "q1", title: "Question 1", isPublished: false },
+//     { id: "q2", title: "Question 2", isPublished: true },
+//     { id: "q3", title: "Question 3", isPublished: false },
+//     { id: "q4", title: "Question 4", isPublished: true },
+//   ]);
+
+//   useEffect(() => {
+//     console.log("questionList changed");
+//   }, [questionList]);
+
+//   function add() {
+//     const r = Math.random().toString().slice(-3);
+//     // setQuestionList(
+//     //   questionList.concat({
+//     //     id: "q" + r,
+//     //     title: "Question" + r,
+//     //     isPublished: false,
+//     //   }),
+//     // );
+
+//     setQuestionList(
+//       produce((draft) => {
+//         draft.push({
+//           id: "q" + r,
+//           title: "Question" + r,
+//           isPublished: false,
+//         });
+//       }),
+//     );
+//   }
+
+//   function deletionQuestion(id: string) {
+//     // setQuestionList(
+//     //   questionList.filter((q) => {
+//     //     if (q.id === id) return false;
+//     //     else return true;
+//     //   }),
+//     setQuestionList(
+//       produce((draft) => {
+//         const index = draft.findIndex((q) => q.id === id);
+//         draft.splice(index, 1);
+//       }),
+//     );
+//   }
+
+//   function publishQuestion(id: string) {
+//     // setQuestionList(
+//     //   questionList.map((q) => {
+//     //     if (q.id !== id) return q;
+
+//     //     return {
+//     //       ...q,
+//     //       isPublished: true,
+//     //     };
+//     //   }),
+//     // );
+
+//     setQuestionList(
+//       produce((draft) => {
+//         const q = draft.find((item) => item.id === id);
+//         if (q) q.isPublished = true;
+//       }),
+//     );
+//   }
+
+//   return (
+//     <>
+//       <h1>Question List2</h1>
+//       <div className={styles["list-item"]}>list-item</div>
+//       <div>
+//         {questionList.map((question) => {
+//           const { id, title, isPublished } = question;
+//           return (
+//             <QuesionCard
+//               key={id}
+//               id={id}
+//               title={title}
+//               isPublished={isPublished}
+//               deleteQuestion={deletionQuestion}
+//               publishQuestion={publishQuestion}
+//             />
+//           );
+//         })}
+//       </div>
+//       <div>
+//         <button onClick={add}>Add New Questionary</button>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default List2;
